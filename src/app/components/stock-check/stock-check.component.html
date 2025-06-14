@@ -1,0 +1,20 @@
+<div class="secondary-container">
+  <h2>🔍 Verificar Estoque</h2>
+
+  <div class="form-check">
+    <input type="number" min="1" [(ngModel)]="productId" placeholder="ID do Produto" name="productId">
+    <button (click)="checkStock()">Consultar</button>
+  </div>
+
+  <p *ngIf="stockMessage !== ''">
+    📦 {{ stockMessage }}
+  </p>
+  <p *ngIf="stockStatus === 'Estoque OK.'">
+    ✅ {{ stockStatus }}
+  </p>
+  <p *ngIf="stockStatus === 'Estoque baixo!'">
+    ⚠️ {{ stockStatus }}
+  </p>
+
+  <button class="back-btn" routerLink="/">⬅ Voltar à Listagem</button>
+</div>

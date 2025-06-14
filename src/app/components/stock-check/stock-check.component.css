@@ -1,0 +1,15 @@
+.form-check {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto 15px auto;
+  text-align: left;
+  max-width: 500px;
+}
+
+input {
+  max-width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

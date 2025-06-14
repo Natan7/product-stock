@@ -1,0 +1,34 @@
+<div class="secondary-container">
+  <h2>➕ Adicionar Produto</h2>
+
+  <form (ngSubmit)="save()">
+    <div class="form-add">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" [(ngModel)]="product.nome" placeholder="Nome do Produto" name="nome" required>
+    </div>
+
+    <div class="form-add">
+      <label for="descricao">Descrição</label>
+      <input id="descricao" type="text" [(ngModel)]="product.descricao" placeholder="Descrição" name="descricao" required>
+    </div>
+
+    <div class="form-add">
+      <label for="preco">Preço</label>
+      <input id="preco" type="number" [(ngModel)]="product.preco" placeholder="Preço" name="preco" min="0" required>
+    </div>
+
+    <div class="form-add">
+      <label for="quantidade">Quantidade em Estoque</label>
+      <input id="quantidade" type="number" [(ngModel)]="product.quantidadeEstoque" placeholder="Quantidade" name="quantidadeEstoque" min="0" required>
+    </div>
+
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p> <!-- Exibe erro -->
+
+    <button class="save-btn" type="submit">💾 Salvar Produto</button>
+  </form>
+
+  <div class="button-group">
+    <button class="back-btn" routerLink="/">⬅ Voltar à Listagem</button>
+  </div>
+
+</div>

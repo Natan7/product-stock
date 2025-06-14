@@ -1,0 +1,39 @@
+h2 {
+  color: #333;
+}
+
+.form-add {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-add-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-add-row .form-add {
+  width: 48%;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-group {
+  margin-top: 20px;
+  text-align: center;
+}

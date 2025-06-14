@@ -1,0 +1,47 @@
+<div class="secondary-container">
+  <h1 class="title">{{ title }}</h1>
+  
+  <nav>
+    <button class="save-btn" [routerLink]="['/create']">➕ Adicionar Produto</button>
+    <button class="check-btn" [routerLink]="['/check-stock']">🔍 Checar Estoque</button>
+  </nav>
+  
+  <h2 class="subtitle">📋 Lista de Produtos</h2>
+
+  <ul *ngIf="products.length > 0" class="product-list">
+    <li *ngFor="let product of products">
+      <span class="product-info">
+        <strong>{{ product.nome }}</strong> - R$ {{ product.preco }} | Estoque: {{ product.quantidadeEstoque }}  
+        <br> 📝 {{ product.descricao }}
+      </span>
+      <button class="edit-btn" (click)="startEdit(product)">✏️ Editar</button>
+      <button class="delete-btn" (click)="deleteProduct(product.id)">🗑️ Excluir</button>
+    </li>
+  </ul>
+
+  <p *ngIf="products.length === 0" class="empty-message">Nenhum produto encontrado.</p>
+  
+  <!-- MODAL DE EDIÇÃO -->
+  <div *ngIf="editingProduct" class="modal">
+    <div class="modal-content">
+      <h3>📝 Editando </h3>
+      
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p> <!-- Exibe erro -->
+
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" [(ngModel)]="editingProduct.nome" placeholder="Nome">
+
+      <label for="descricao">Descrição</label>
+      <input id="descricao" type="text" [(ngModel)]="editingProduct.descricao" placeholder="Descrição do Produto"> <!-- Adicionado -->
+
+      <label for="preco">Preço</label>
+      <input id="preco" type="number" [(ngModel)]="editingProduct.preco" placeholder="Preço">
+      
+      <label for="quantidade">Quantidade</label>
+      <input id="quantidade" type="number" [(ngModel)]="editingProduct.quantidadeEstoque" placeholder="Quantidade">
+      
+      <button class="save-btn" (click)="saveEdit()">💾 Salvar Alterações</button>
+      <button class="cancel-btn" (click)="cancelEdit()">❌ Cancelar</button>
+    </div>
+  </div>
+</div>
