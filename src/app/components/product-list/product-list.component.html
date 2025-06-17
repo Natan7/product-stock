@@ -21,7 +21,7 @@
     </li>
   </ul>
 
-  <div *ngIf="products.length > 0" class="pagination">
+  <div *ngIf="totalElements > 10" class="pagination">
     <button (click)="prevPage()" [disabled]="page === 0">⬅ Anterior</button>
     <span *ngFor="let p of getPages()" (click)="goToPage(p)" [class.active]="p === page">
       {{ p + 1 }}
@@ -29,7 +29,7 @@
     <button (click)="nextPage()" [disabled]="page >= totalPages - 1">Próximo ➡</button>
   </div>
 
-  <p *ngIf="products.length === 0" class="empty-message">Nenhum produto encontrado.</p>
+  <p *ngIf="totalElements === 0" class="empty-message">Nenhum produto encontrado.</p>
   
   <!-- MODAL DE EDIÇÃO -->
   <div *ngIf="editingProduct" class="modal">

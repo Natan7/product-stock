@@ -11,6 +11,7 @@ export class ProductListComponent implements OnInit {
   products: any[] = [];
   page = 0;
   size = 10;
+  totalElements = 0;
   totalPages = 1;
   editingProduct: any = null;
   errorMessage: string = '';
@@ -24,8 +25,9 @@ export class ProductListComponent implements OnInit {
   loadProducts(): void {
     this.productService.getAll(this.page, this.size).subscribe({
       next: (response) => {
-        this.products = response.content; // 🔥 Pegamos somente os produtos
-        this.totalPages = response.totalPages; // 🔥 Atualiza número total de páginas
+        this.products = response.content;
+        this.totalElements = response.totalElements;
+        this.totalPages = response.totalPages;
       },
       error: (err) => {
         console.error('Erro ao buscar produtos:', err);
@@ -91,7 +93,9 @@ export class ProductListComponent implements OnInit {
     if (confirm('Tem certeza que deseja excluir este produto?')) {
       this.productService.delete(id).subscribe({
         next: () => {
-          this.products = this.products.filter(product => product.id !== id); //  Remove da lista sem recarregar a página
+          this.products = this.products.filter(product => product.id !== id);
+          this.page = 0;
+          this.loadProducts();
         },
         error: (err) => {
           console.error('Erro ao excluir produto:', err);
