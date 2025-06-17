@@ -61,6 +61,7 @@ button:hover {
 
 .save-btn {
   background-color: #28a745;
+  width: 185px;
 }
 
 .save-btn:hover {

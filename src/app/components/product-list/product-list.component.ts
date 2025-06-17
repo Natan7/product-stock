@@ -9,21 +9,55 @@ import { ProductService } from '../../services/product.service';
 export class ProductListComponent implements OnInit {
   title = 'Gerenciamento de Produtos';
   products: any[] = [];
+  page = 0;
+  size = 10;
+  totalPages = 1;
   editingProduct: any = null;
   errorMessage: string = '';
 
   constructor(private productService: ProductService, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.productService.getAll().subscribe({
-      next: (data) => {
-        this.products = data;
-        this.cdRef.detectChanges();
+    this.loadProducts();
+  }
+
+  loadProducts(): void {
+    this.productService.getAll(this.page, this.size).subscribe({
+      next: (response) => {
+        this.products = response.content; // 🔥 Pegamos somente os produtos
+        this.totalPages = response.totalPages; // 🔥 Atualiza número total de páginas
       },
       error: (err) => {
         console.error('Erro ao buscar produtos:', err);
       }
     });
+  }
+
+  getPages(): number[] {
+    const pagesArray = [];
+    for (let i = 0; i < this.totalPages; i++) {
+      pagesArray.push(i);
+    }
+    return pagesArray;
+  }
+
+  goToPage(pageNumber: number): void {
+    this.page = pageNumber;
+    this.loadProducts();
+  }
+
+  nextPage(): void {
+    if (this.page < this.totalPages - 1) {
+      this.page++;
+      this.loadProducts();
+    }
+  }
+
+  prevPage(): void {
+    if (this.page > 0) {
+      this.page--;
+      this.loadProducts();
+    }
   }
 
   startEdit(product: any): void {

@@ -10,10 +10,14 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
+  getAll(page: number, size: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}?page=${page}&size=${size}`);
+  }
+  /*
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
-
+*/
   create(product: any): Observable<any> {
     //return this.http.post<any>(this.apiUrl, product);
     return this.http.post(`${this.apiUrl}`, product, { responseType: 'text' });

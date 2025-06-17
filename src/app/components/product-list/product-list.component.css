@@ -42,11 +42,27 @@ nav {
 }
 
 .product-list li {
+  list-style: none;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+}
+
+.product-actions {
+  display: flex;
+  gap: 8px;
 }
 
 .edit-btn {
@@ -140,4 +156,41 @@ nav {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 185px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #232f3e;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #37475a;
+}
+
+.pagination span {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.pagination span.active {
+  background-color: #ff9900;
+  color: white;
+  border: none;
 }
